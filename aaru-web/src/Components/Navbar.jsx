@@ -12,7 +12,7 @@ export const Navbar = () => {
     </Box>
 
   <Flex mr={"5%"} width={"40%"} justifyContent={"space-around"}>
-    <Link to="/Dashboard"  size={"md"}>Dashboard</Link>
+    <Link to="/"  size={"md"}>Dashboard</Link>
     <Link to="/Login" size={"md"}>Login</Link>
     <Link to="/Signup" size={"md"}>Signup</Link>
   </Flex>

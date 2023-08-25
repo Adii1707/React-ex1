@@ -1,7 +1,90 @@
 {
-    "users":[
-               
-    ]
-
-   
+  "users": [
+    {
+      "name": "Ravi Kumar",
+      "email": "ravi@gmail.com",
+      "password": "1234567",
+      "id": 3
+    },
+    {
+      "name": "monu",
+      "email": "monu@gmail.com",
+      "password": "123456",
+      "id": 4
+    }
+  ],
+  "trakeddata": [
+    {
+      "Email": "ravi@gmail.com",
+      "Type": "Income",
+      "Category": "Refunds",
+      "Amount": "680",
+      "Date": "2023-08-23",
+      "id": 9
+    },
+    {
+      "Email": "ravi@gmail.com",
+      "Type": "Expense",
+      "Category": "Housing",
+      "Amount": "2600",
+      "Date": "2023-08-24",
+      "id": 10
+    },
+    {
+      "Email": "ravi@gmail.com",
+      "Type": "Income",
+      "Category": "Gifts",
+      "Amount": "1260",
+      "Date": "2023-08-25",
+      "id": 11
+    },
+    {
+      "Email": "ravi@gmail.com",
+      "Type": "Income",
+      "Category": "Others",
+      "Amount": "1460",
+      "Date": "2023-08-25",
+      "id": 12
+    },
+    {
+      "Email": "ravi@gmail.com",
+      "Type": "Income",
+      "Category": "Salary",
+      "Amount": "1460",
+      "Date": "2023-08-25",
+      "id": 13
+    },
+    {
+      "Email": "monu@gmail.com",
+      "Type": "Income",
+      "Category": "Salary",
+      "Amount": "30000",
+      "Date": "2023-08-25",
+      "id": 14
+    },
+    {
+      "Email": "monu@gmail.com",
+      "Type": "Income",
+      "Category": "Others",
+      "Amount": "23401",
+      "Date": "2023-08-25",
+      "id": 15
+    },
+    {
+      "Email": "monu@gmail.com",
+      "Type": "Expense",
+      "Category": "Food & Drinks",
+      "Amount": "4500",
+      "Date": "2023-08-25",
+      "id": 16
+    },
+    {
+      "Email": "monu@gmail.com",
+      "Type": "Expense",
+      "Category": "Shopping",
+      "Amount": "3850",
+      "Date": "2023-08-25",
+      "id": 17
+    }
+  ]
 }
