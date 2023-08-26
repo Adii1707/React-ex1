@@ -5,16 +5,21 @@ import { Link } from 'react-router-dom'
 import { getTrackingData } from '../Redux/App/action';
 
 export const History = () => {
-
-
+  
   const dispatch = useDispatch();
-  let  Data = useSelector((store)=> store.appreducer.Data) || [];
   
   useEffect(()=>{
     dispatch(getTrackingData())
   },[dispatch])
 
 
+
+let email = localStorage.getItem("usermail") || "";
+
+  let  Data = useSelector((store)=> store.appreducer.Data) || [];
+   let history = Data.filter((el)=> email == el.Email);
+  
+ 
 
 
   return (
@@ -28,9 +33,9 @@ export const History = () => {
     <Center>
       <Box m="20px" w={"50%"}>
        {
-        Data?.map((el)=>
+        history?.map((el)=>
          {
-          return (<Flex p="10px" flexDirection={"column"}  borderRadius={"5px"} mt="10px"  bg={"ivory"} height={"100"} boxShadow={"md"} >
+          return (<Flex key={el.id} p="10px" flexDirection={"column"}  borderRadius={"5px"} mt="10px"  bg={"ivory"} height={"100"} boxShadow={"md"} >
                  <Flex w={"full"} justifyContent={"space-between"}>
                  <Text m="8px" fontWeight={"semibold"}>{el.Category}</Text>
                  <Text m="8px" color={el.Type == "Income"? "green.400": "red.400"} fontWeight={"medium"} >{el.Type == "Income"? "+"+el.Amount : "-"+el.Amount}</Text>
@@ -41,7 +46,7 @@ export const History = () => {
                     <Button>
                       Edit
                       </Button>
-                      <Button Button ml="4px">
+                      <Button ml="4px">
                        Delete
                       </Button>
                   </Flex>

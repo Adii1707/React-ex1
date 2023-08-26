@@ -6,6 +6,7 @@ const PrivateRoute = ({ children }) => {
   const toast = useToast();
 //   const  isAuth  = useSelector((state) => state.reducer.isAuth);
      let email = localStorage.getItem("usermail");
+    
   console.log(email)
   if (email) {
     return children;

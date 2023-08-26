@@ -11,41 +11,61 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 export function Expense() {
 
   const dispatch = useDispatch();
-let  Data = useSelector((store)=> store.appreducer.Data) || [];
-
-useEffect(()=>{
-  dispatch(getTrackingData())
-},[dispatch])
+  let Data = useSelector((store) => store.appreducer.Data);
   
-// console.log(Data)
-let Expense = Data?.filter((el)=> { if(el.Type=="Expense") { return el.Category}})
-let email = localStorage.getItem("usermail") || "";
-console.log(email);
-Expense = Expense.filter((el)=> email == el.Email)
-
-let food = Expense.filter((el)=> el.Category == "Food & Drinks");
-let shopping = Expense.filter((el)=> el.Category == "Shopping");
-let Housing = Expense.filter((el)=> el.Category == "Housing");
-let Bills = Expense.filter((el)=> el.Category == "Bills");
-let Vehicle = Expense.filter((el)=> el.Category == "Vehicle & Transport");
-let Lifestyle = Expense.filter((el)=> el.Category == "LifeStyle");
-
-// console.log(food)
-let FA = 0;
-let SA = 0;
-let HA = 0;
-let BA = 0;
-let VA = 0;
-let LA = 0;
-
-
-food.forEach((el)=>{ return FA += +el.Amount});
-shopping.forEach((el)=>{ return SA += +el.Amount});
-Housing.forEach((el)=>{ return HA += +el.Amount});
-Bills.forEach((el)=>{ return BA += +el.Amount});
-Vehicle.forEach((el)=>{ return VA += +el.Amount});
-Lifestyle.forEach((el)=>{ return LA += +el.Amount});
-
+  useEffect(() => {
+    dispatch(getTrackingData());
+  }, [dispatch]);
+  
+  let Expense = [];
+  let FA = 0;
+    let SA = 0;
+    let HA = 0;
+    let BA = 0;
+    let VA = 0;
+    let LA = 0;
+    
+  if (Array.isArray(Data)) {
+    let email = localStorage.getItem("usermail") || "";
+    Expense = Data.filter((el) => el.Type === "Expense" && email === el.Email);
+  
+    let food = Expense.filter((el) => el.Category === "Food & Drinks");
+    let shopping = Expense.filter((el) => el.Category === "Shopping");
+    let Housing = Expense.filter((el) => el.Category === "Housing");
+    let Bills = Expense.filter((el) => el.Category === "Bills");
+    let Vehicle = Expense.filter((el) => el.Category === "Vehicle & Transport");
+    let Lifestyle = Expense.filter((el) => el.Category === "LifeStyle");
+  
+    
+  
+    food.forEach((el) => {
+      FA += +el.Amount;
+    });
+  
+    shopping.forEach((el) => {
+      SA += +el.Amount;
+    });
+  
+    Housing.forEach((el) => {
+      HA += +el.Amount;
+    });
+  
+    Bills.forEach((el) => {
+      BA += +el.Amount;
+    });
+  
+    Vehicle.forEach((el) => {
+      VA += +el.Amount;
+    });
+  
+    Lifestyle.forEach((el) => {
+      LA += +el.Amount;
+    });
+  } else {
+    console.error("Data is not an array.");
+  }
+  
+  
 
 const data = {
   labels: ["Food & Drinks", "Shopping", "Housing", "Bills", 'Vehicle & Transport', "LifeStyle"],

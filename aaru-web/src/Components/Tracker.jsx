@@ -1,22 +1,25 @@
 import { Box, Button, Center, Flex, FormControl, FormLabel, Heading, Input, Select } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { postTrackingData } from '../Redux/App/action';
 
 export const Tracker = () => {
-
+const navigate = useNavigate();
 const [Type, setType] = useState("");
 const [category, setCategory] = useState("");
 const [amount, setAmount] = useState("");
 const [date, setDate] = useState("");
 const dispatch = useDispatch();
-let usermail = localStorage.getItem("usermail") || "";
+let usermail = localStorage.getItem("usermail");
+ 
+
 console.log("usermail",usermail)
 const HandleClick = ()=> {
         if(usermail && Type && category && amount && date) {
           dispatch(postTrackingData({usermail, Type, category, amount, date}));
           alert("Data Saved");
+          navigate("/Analytics")
           
         }else{
           alert("Please fill all the details!")
@@ -57,7 +60,7 @@ Type=="Income"? <Select placeholder='Select Category' value={category} onChange=
 </Select>
 }
   <FormLabel mt="4">Amount</FormLabel>
-  <Input type='text' placeholder='Amount' value={amount} onChange={(e)=> setAmount(e.target.value)} />
+  <Input type='number' placeholder='Amount' value={amount} onChange={(e)=> setAmount(e.target.value)} />
   <FormLabel mt="4">Date</FormLabel>
   <Input type='date' placeholder='Date' value={date} onChange={(e)=> setDate(e.target.value)} />
   <Button onClick={HandleClick} mt="4">Save Data</Button>

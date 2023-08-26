@@ -12,37 +12,54 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 export function Income() {
 
   const dispatch = useDispatch();
-  let  Data = useSelector((store)=> store.appreducer.Data) || [];
+  let Data = useSelector((store) => store.appreducer.Data);
   
-  useEffect(()=>{
-    dispatch(getTrackingData())
-  },[dispatch])
-
-let Income = Data.filter((el)=> { if(el.Type=="Income") { return el.Category}}) || []
-
-
-let email = localStorage.getItem("usermail") || "";
-console.log(email);
-Income = Income.filter((el)=> email == el.Email)
-
-
-
-let Salary = Income.filter((el)=> el.Category == "Salary");
-let Gifts = Income.filter((el)=> el.Category == "Gifts");
-let Refunds = Income.filter((el)=> el.Category == "Refunds");
-let Other = Income.filter((el)=> el.Category == "Others"); 
-
-let SA = 0;
-let GA = 0;
-let RA = 0;
-let OA = 0;
-
-  Salary.forEach((el)=> { return SA += +el.Amount});
-  Gifts.forEach((el)=> { return GA += +el.Amount});
-  Refunds.forEach((el)=> { return RA += +el.Amount});
-  Other.forEach((el)=> { return OA += +el.Amount});
-
-
+  useEffect(() => {
+    dispatch(getTrackingData());
+  }, [dispatch]);
+  
+  let Income = [];
+  let Salary = [];
+  let Gifts = [];
+  let Refunds = [];
+  let Other = [];
+  let SA = 0;
+  let GA = 0;
+  let RA = 0;
+  let OA = 0;
+  
+  if (Array.isArray(Data)) {
+    Income = Data.filter((el) => el.Type === "Income");
+  
+    const email = localStorage.getItem("usermail") || "";
+    Income = Income.filter((el) => email === el.Email);
+  
+    Salary = Income.filter((el) => el.Category === "Salary");
+    Gifts = Income.filter((el) => el.Category === "Gifts");
+    Refunds = Income.filter((el) => el.Category === "Refunds");
+    Other = Income.filter((el) => el.Category === "Others");
+  } else {
+    console.error("Data is not an array.");
+  }
+  
+  
+  
+  Salary.forEach((el) => {
+    SA += +el.Amount;
+  });
+  
+  Gifts.forEach((el) => {
+    GA += +el.Amount;
+  });
+  
+  Refunds.forEach((el) => {
+    RA += +el.Amount;
+  });
+  
+  Other.forEach((el) => {
+    OA += +el.Amount;
+  });
+  
 
   const data = {
     labels: ['Salary', 'Gifts', 'Refunds', 'Other'],

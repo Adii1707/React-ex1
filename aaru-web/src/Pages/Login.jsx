@@ -28,8 +28,16 @@ const HandleClick = ()=>{
      if(user[0]?.email == email && user[0]?.password==Password)
      { 
       alert("Success")
+      
+      localStorage.setItem("username",user[0]?.name);
+      
+      const storageEvent = new StorageEvent("storage", {
+           key: "username",
+          newValue: user[0].name
+});
+window.dispatchEvent(storageEvent);
+
       localStorage.setItem("usermail",email);
-      //localStorage.setItem("usermail",email);
       
       // setIsAuth(true);
       navigate("/")
@@ -50,7 +58,7 @@ const HandleClick = ()=>{
   <Input type='text' placeholder='Email' value={email} onChange={(e)=> setEmail(e.target.value)} />
   <FormLabel mt="4">Password</FormLabel>
   <Input type='password' placeholder='Password' value={Password} onChange={(e)=> setPassword(e.target.value)} />
-  <Button onClick={HandleClick} mt="4">Login</Button>
+  <Button  onClick={HandleClick} mt="4">Login</Button>
 </FormControl>
 </Center>
   )
